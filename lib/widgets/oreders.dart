@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizza/consts/ImagesConsts.dart';
 import 'package:pizza/utils/app_utils.dart';
+import 'package:pizza/views/phone.dart';
 import 'package:pizza/widgets/ColoredSafeArea.dart';
 import 'package:pizza/widgets/Sliders.dart';
 import 'package:pizza/widgets/button.dart';
@@ -43,6 +44,16 @@ class _OredersState extends State<Oreders> {
         color: Theme.of(context).scaffoldBackgroundColor,
         child: SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (builder) => Phone()));
+            }, child: Text("List", style: Theme.of(context).textTheme.bodyText2!.copyWith(
+            fontWeight: FontWeight.w600,
+            fontSize: 30,
+            color: Colors.black)))
+          ],
+        ),
         body: SingleChildScrollView(
           child: Container(
             width: double.infinity,

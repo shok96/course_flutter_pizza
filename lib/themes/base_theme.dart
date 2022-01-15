@@ -6,13 +6,13 @@ import 'constantsTheme.dart';
 
 ThemeData themeData(BuildContext context) {
   return ThemeData(
-    primaryColor: Colors.white,
+    primaryColor: Colors.blue,
     secondaryHeaderColor: Colors.black,
     scaffoldBackgroundColor: Colors.lightBlue,
       unselectedWidgetColor: Colors.red,
       toggleableActiveColor: Colors.yellow,
     appBarTheme: AppBarTheme(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.lightBlue,
         foregroundColor: violetDark,
         elevation: 0),
     colorScheme: ColorScheme.dark(
