@@ -6,6 +6,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pizza/views/app_nav/app_screen1.dart';
+import 'package:pizza/views/app_nav/app_screen2.dart';
+import 'package:pizza/views/base.dart';
 import 'package:pizza/views/login.dart';
 import 'package:pizza/views/reg.dart';
 import 'package:pizza/widgets/oreders.dart';
@@ -27,7 +30,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => Login(),
+        "/base": (context) => Base(),
+
+      },
     );
   }
 }

@@ -77,9 +77,7 @@ class _LoginState extends State<Login> {
                               context, "Неверный телефон или пароль");
                         else
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return Oreders();
-                          }));
+                              .pushNamedAndRemoveUntil("/base", (route) => false);
                       },
                     ),
                     padding: const EdgeInsets.only(top: 28),

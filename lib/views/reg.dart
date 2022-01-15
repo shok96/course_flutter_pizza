@@ -114,9 +114,7 @@ class _RegState extends State<Reg> {
                               context, "Неверный телефон или почта");
                         else
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return Oreders();
-                          }));
+                              .pushNamedAndRemoveUntil("/base", (route) => false);
                       },
                       text: "Отправить код",
                     ),
