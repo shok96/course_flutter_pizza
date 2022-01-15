@@ -29,6 +29,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return ColoredSafeArea(
+      color: Theme.of(context).scaffoldBackgroundColor,
         child: Scaffold(
       body: SafeArea(
         child: Container(
@@ -39,11 +40,11 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: [
                   Image.asset(ImagesConsts.logo),
-                  const Padding(
+                 Padding(
                     padding: EdgeInsets.only(top: 20),
                     child: Text(
                       "Введите логин в виде 10 цифр номера телефона",
-                      style: const TextStyle(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Colors.black54,
                           fontSize: 16,
                           fontWeight: FontWeight.w400),
@@ -92,9 +93,9 @@ class _LoginState extends State<Login> {
                           return Reg();
                         }));
                       },
-                      child: const Text(
+                      child:  Text(
                         "Регистрация",
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             color: Color(0xFF0079D0),
                             fontWeight: FontWeight.w500,
                             fontSize: 16),
@@ -107,9 +108,9 @@ class _LoginState extends State<Login> {
                         onTap: (){
                           showInSnackBar(context, "А голову ты не заыбл?");
                         },
-                        child: const Text(
+                        child: Text(
                     "Забыли пароль?",
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: const Color(0xFF0079D0),
                           fontWeight: FontWeight.w500,
                           fontSize: 16),

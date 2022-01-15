@@ -29,6 +29,7 @@ class _RegState extends State<Reg> {
   @override
   Widget build(BuildContext context) {
     return ColoredSafeArea(
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Scaffold(
       body: SafeArea(
         child: Container(
@@ -41,7 +42,7 @@ class _RegState extends State<Reg> {
                  Row(children: [
                    Icon(Icons.people, color: Color(0xFF5C5C5C),),
                    SizedBox(width: 9,),
-                   Text("Регистрация", style: TextStyle(color: Color(0xFF5C5C5C), fontSize: 20, fontWeight: FontWeight.w800),)
+                   Text("Регистрация", style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Color(0xFF5C5C5C), fontSize: 20, fontWeight: FontWeight.w800),)
                  ],
                    mainAxisSize: MainAxisSize.min,
                  ),
@@ -50,7 +51,7 @@ class _RegState extends State<Reg> {
                     padding: EdgeInsets.only(top: 7),
                     child: Text(
                       "Чтобы зарегистрироваться введите свой номер телефона и почту",
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Color(0xFFC4C4C4),
                           fontSize: 16,
                           fontWeight: FontWeight.w400),
@@ -59,7 +60,7 @@ class _RegState extends State<Reg> {
                   ),
                   CustomPadding(
                       padding: EdgeInsets.only(top: 14),
-                      child: Text("Телефон", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.black54),)),
+                      child: Text("Телефон", style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.black54),)),
                   CustomPadding(
                     padding: EdgeInsets.only(top: 6),
                     child: Input(
@@ -72,7 +73,7 @@ class _RegState extends State<Reg> {
                   ),
                   CustomPadding(
                       padding: EdgeInsets.only(top: 14),
-                      child: Text("Почта", style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.black54),)),
+                      child: Text("Почта", style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.black54),)),
                   CustomPadding(
                     padding: EdgeInsets.only(top: 6),
                     child: Input(
@@ -88,7 +89,7 @@ class _RegState extends State<Reg> {
                     padding: EdgeInsets.only(top: 24),
                     child: Text(
                       "Вам придет четырехзначный код, который будет вашим паролем",
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Color(0xFFC4C4C4),
                           fontSize: 16,
                           fontWeight: FontWeight.w400),

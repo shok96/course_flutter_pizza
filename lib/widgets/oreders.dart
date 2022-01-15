@@ -40,6 +40,7 @@ class _OredersState extends State<Oreders> {
   @override
   Widget build(BuildContext context) {
     return ColoredSafeArea(
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -55,17 +56,17 @@ class _OredersState extends State<Oreders> {
                   child: Column(
                     children: [
                       CustomPadding(
-                          child: const Text(
+                          child: Text(
                         "Калькулятор пиццы",
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             fontWeight: FontWeight.w600,
                             fontSize: 30,
                             color: Colors.black),
                       )),
                       CustomPadding(
-                        child: const Text(
+                        child:  Text(
                           "Выберите параметры:",
-                          style: TextStyle(
+                          style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: Colors.black),
@@ -117,7 +118,7 @@ class _OredersState extends State<Oreders> {
                             children: [
                               Image.asset(ImagesConsts.cheese),
                               Text("Дополнительный сыр",
-                                  style: TextStyle(
+                                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
                                       color: Color(0xFF263238),
                                       fontWeight: FontWeight.w400,
                                       fontSize: 16)),

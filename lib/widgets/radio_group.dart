@@ -37,7 +37,7 @@ class _RadioGroupState extends State<RadioGroup> {
           ListTile(
             title: Text(e["name"]),
             trailing: Radio(
-              activeColor: Color(0xFF5DB075),
+            //  activeColor: Color(0xFF5DB075),
               onChanged: (value) {
                 widget.onChange(e["coast"]);
                 setState(() {

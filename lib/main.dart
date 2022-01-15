@@ -10,6 +10,8 @@ import 'package:pizza/views/login.dart';
 import 'package:pizza/views/reg.dart';
 import 'package:pizza/widgets/oreders.dart';
 
+import 'themes/base_theme.dart';
+
 Future main() async{
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -23,9 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Pizza',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: themeData(context),
       debugShowCheckedModeBanner: false,
       home: Login(),
     );
