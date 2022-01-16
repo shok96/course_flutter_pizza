@@ -4,7 +4,10 @@
  * Last modified 24.12.2021, 17:36
  */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pizza/consts/ImagesConsts.dart';
 import 'package:pizza/utils/app_utils.dart';
 import 'package:pizza/views/phone.dart';
@@ -15,6 +18,7 @@ import 'package:pizza/widgets/custom_padding.dart';
 import 'package:pizza/widgets/header_text.dart';
 import 'package:pizza/widgets/radio_group.dart';
 import 'package:pizza/widgets/switches.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Oreders extends StatefulWidget {
   Oreders({Key? key}) : super(key: key);
@@ -24,6 +28,9 @@ class Oreders extends StatefulWidget {
 }
 
 class _OredersState extends State<Oreders> {
+
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
   bool chese = false;
   int size = 60;
   int souces = 5;
@@ -38,6 +45,35 @@ class _OredersState extends State<Oreders> {
     return "${coast} рублей.";
   }
 
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/pass.txt');
+  }
+
+  Future<String> readPass() async {
+    try {
+      final file = await _localFile;
+      final contents = await file.readAsString();
+
+      return contents;
+    } catch (e) {
+      return "";
+    }
+  }
+
+  Future<String> getTitle() async{
+    final SharedPreferences prefs = await _prefs;
+    String login = await prefs.getString('login') ?? "";
+    String pass = await readPass();
+    return "${login} - ${pass}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return ColoredSafeArea(
@@ -45,12 +81,21 @@ class _OredersState extends State<Oreders> {
         child: SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          title: FutureBuilder<String>(
+            future: getTitle(),
+            builder: (context, snapshot) {
+              if(snapshot.hasData)
+              return Text(snapshot.data!);
+              else
+                return Text("Loading...");
+            }
+          ),
           actions: [
             TextButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (builder) => Phone()));
             }, child: Text("List", style: Theme.of(context).textTheme.bodyText2!.copyWith(
             fontWeight: FontWeight.w600,
-            fontSize: 30,
+            fontSize: 18,
             color: Colors.black)))
           ],
         ),

@@ -4,7 +4,10 @@
  * Last modified 24.12.2021, 13:37
  */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pizza/consts/ImagesConsts.dart';
 import 'package:pizza/utils/app_utils.dart';
 import 'package:pizza/views/reg.dart';
@@ -13,6 +16,7 @@ import 'package:pizza/widgets/button.dart';
 import 'package:pizza/widgets/custom_padding.dart';
 import 'package:pizza/widgets/input.dart';
 import 'package:pizza/widgets/oreders.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -25,6 +29,24 @@ class _LoginState extends State<Login> {
   TextEditingController TRef = new TextEditingController();
 
   TextEditingController TPass = new TextEditingController();
+
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/pass.txt');
+  }
+
+  Future<File> writePass(String pass) async {
+    final file = await _localFile;
+    return file.writeAsString(pass);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,15 +94,20 @@ class _LoginState extends State<Login> {
                   CustomPadding(
                     child: Button(
                       text: "Войти",
-                      action: () {
+                      action: () async{
                         if (TRef.text.isEmpty || TPass.text.isEmpty)
                           showInSnackBar(
                               context, "Неверный телефон или пароль");
-                        else
+                        else{
+                          final SharedPreferences prefs = await _prefs;
+                          await prefs.setString("login", TRef.text);
+                          await writePass(TPass.text);
+
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
                             return Oreders();
                           }));
+                        }
                       },
                     ),
                     padding: const EdgeInsets.only(top: 28),

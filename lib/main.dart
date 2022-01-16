@@ -12,10 +12,12 @@ import 'package:pizza/widgets/oreders.dart';
 
 import 'themes/base_theme.dart';
 
-Future main() async{
-  SystemChrome.setPreferredOrientations(
+Future<void> main() async {
+  Paint.enableDithering = true;
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-      runApp(MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
